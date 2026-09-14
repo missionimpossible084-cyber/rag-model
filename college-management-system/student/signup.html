@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Sign Up · Askbook</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/auth.css" />
+</head>
+<body>
+  <div class="auth-page student">
+    <div class="auth-card">
+      <a class="auth-back" id="backLink" href="#">← Back</a>
+      <div class="auth-icon" id="roleIcon"></div>
+      <h1>Create Student Account</h1>
+      <p class="auth-sub">Set up your student account to view classes and announcements.</p>
+
+      <div class="form-error" id="formError" hidden></div>
+
+      <form id="signupForm" novalidate>
+        <div class="field">
+          <label for="name">Full name</label>
+          <div class="input-wrap" id="userIconWrap">
+            <input type="text" id="name" name="name" placeholder="Jane Doe" autocomplete="name" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <div class="input-wrap" id="mailIconWrap">
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="username" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-wrap" id="lockIconWrap">
+            <input type="password" id="password" name="password" placeholder="At least 6 characters" autocomplete="new-password" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="confirmPassword">Confirm password</label>
+          <div class="input-wrap" id="lockIconWrap2">
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repeat password" autocomplete="new-password" />
+          </div>
+        </div>
+        <button type="submit" class="btn-primary" id="submitBtn">Create account</button>
+      </form>
+
+      <div class="auth-divider">or</div>
+      <button type="button" class="btn-google" id="googleBtn" data-label="Continue with Google">
+        <span id="googleIconSlot"></span><span class="btn-label">Continue with Google</span>
+      </button>
+
+      <p class="auth-switch">Already have an account? <a id="loginLinkEl" href="#">Sign in</a></p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { icon, googleIcon } from '../js/common/icons.js';
+    import { initSignupPage, loginLink } from '../js/common/signupPage.js';
+    import { backToHomeLink } from '../js/common/loginPage.js';
+
+    document.getElementById('backLink').href = backToHomeLink();
+    document.getElementById('loginLinkEl').href = loginLink('student');
+    document.getElementById('roleIcon').innerHTML = icon('graduation', { size: 26 });
+    document.getElementById('userIconWrap').insertAdjacentHTML('afterbegin', icon('user', { size: 16 }));
+    document.getElementById('mailIconWrap').insertAdjacentHTML('afterbegin', icon('mail', { size: 16 }));
+    document.getElementById('lockIconWrap').insertAdjacentHTML('afterbegin', icon('lock', { size: 16 }));
+    document.getElementById('lockIconWrap2').insertAdjacentHTML('afterbegin', icon('lock', { size: 16 }));
+    document.getElementById('googleIconSlot').innerHTML = googleIcon(18);
+
+    initSignupPage('student');
+  </script>
+</body>
+</html>
